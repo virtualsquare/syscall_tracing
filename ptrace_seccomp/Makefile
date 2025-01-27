@@ -1,0 +1,10 @@
+all: ptrace_seccomp_virt ptrace_seccomp_virt_gsi ptrace_seccomp_virt_ssi
+
+ptrace_seccomp_virt: ptrace_seccomp_virt.c
+
+ptrace_seccomp_virt_gsi: ptrace_seccomp_virt_gsi.c
+
+ptrace_seccomp_virt_ssi: ptrace_seccomp_virt_ssi.c
+
+clean:
+	rm -f ptrace_seccomp_virt ptrace_seccomp_virt_gsi ptrace_seccomp_virt_ssi
