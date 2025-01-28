@@ -1,6 +1,6 @@
 # PTRACE
 
-`ptrace` is an acient system call. It is included in UNIX v6 (1975).
+`ptrace` is an ancient system call. It is included in UNIX v6 (1975).
 The Linux implentation of `ptrace` evolved during the time.
 
 A *tracer* process can be informed of (trace) specific events of a *tracee* process.
@@ -23,8 +23,8 @@ the syscall related information. The tool `strace` has benefited greatly from th
 Unfortunately `PTRACE_GET_SYSCALL_INFO` was released incomplete of its complementary
 `PTRACE_SET_SYSCALL_INFO` companion.
 
-* We propose to fill this gap in 2022 and 2024. Dmitry V. Levin is actively working to add this
-feature.
+* We proposed to fill this gap in 2022 and 2024. Dmitry V. Levin is actively working in these
+days to add this feature.
 
 As for *tracee*'s memory access:
 
@@ -35,6 +35,7 @@ at a time.
 
 * the pseudo-file `/proc/..pid../mem` provides another way to read/write the *tracee*'s
 memory.
+
 ## PTRACE details
 
 * hypervisor mode.

@@ -24,24 +24,15 @@ VU_PROTOTYPES(nopasswd)
 		.flags = VU_USE_PRW
 	};
 
-int vu_nopasswd_getdents64(unsigned int fd, struct dirent64 *dirp, unsigned int count, void *private) {
-	return syscall(__NR_getdents64, fd, dirp, count);
-}
-
 static struct vuht_entry_t *ht;
 
-void vu_nopasswd_cleanup(uint8_t type, void *arg, int arglen,
-    struct vuht_entry_t *ht) {
-	if (type == CHECKPATH) {
-		//printk("%*.*s\n", arglen, arglen, arg);
-	}
+int vu_nopasswd_open(const char *pathname, int flags, mode_t mode, void **fdprivate) {
+	return open("/etc/hostname", flags, mode);
 }
 
-int vu_nopasswd_open(const char *pathname, int flags, mode_t mode, void **fdprivate) {
-	if (strcmp(pathname, "/etc/passwd") == 0)
-		return open("/etc/hostname", flags, mode);
-	else
-		return open(pathname, flags, mode);
+int  vu_nopasswd_lstat(char *pathname, struct vu_stat *buf, int flags,
+		int sfd, void *fdprivate) {
+	return lstat("/etc/hostname", buf);
 }
 
 void *vu_nopasswd_init(void) {
@@ -49,7 +40,6 @@ void *vu_nopasswd_init(void) {
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
-	vu_syscall_handler(s, lstat) = lstat;
 	vu_syscall_handler(s, readlink) = readlink;
 	vu_syscall_handler(s, unlink) = unlink;
 	vu_syscall_handler(s, mkdir) = mkdir;
@@ -73,7 +63,7 @@ void *vu_nopasswd_init(void) {
 	vu_syscall_handler(s, fcntl) = fcntl;
 #pragma GCC diagnostic pop
 
-	ht = vuht_pathadd(CHECKPATH,"/","/","nopasswd",0,"",s,0,NULL,NULL);
+	ht = vuht_pathadd(CHECKPATH,"/","/etc/passwd","nopasswd",0,"",s,0,NULL,NULL);
 	return NULL;
 }
 

@@ -30,13 +30,6 @@ int vu_nopasswd_getdents64(unsigned int fd, struct dirent64 *dirp, unsigned int 
 
 static struct vuht_entry_t *ht;
 
-void vu_nopasswd_cleanup(uint8_t type, void *arg, int arglen,
-    struct vuht_entry_t *ht) {
-	if (type == CHECKPATH) {
-		//printk("%*.*s\n", arglen, arglen, arg);
-	}
-}
-
 int vu_nopasswd_open(const char *pathname, int flags, mode_t mode, void **fdprivate) {
 	if (strcmp(pathname, "/etc/passwd") == 0)
 		return open("/etc/hostname", flags, mode);
