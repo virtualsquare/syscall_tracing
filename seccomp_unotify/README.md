@@ -21,6 +21,8 @@ use `pidfd_getfd` (on the hypervisor side) to get a 'dup' of the tracee's
 
 * hypervisor mode (forwarding the notify fd to the hypervisor process).
 
+* syscall event notification via: pollable file descriptor + ioctl
+
 * arch independent
 
 * syscalls run at hypervisor side, `SECCOMP_IOCTL_NOTIF_SEND` returns result/errno.

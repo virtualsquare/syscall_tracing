@@ -37,6 +37,8 @@ by the kernel) using _native_syscall.
 
 * self-virtualization
 
+* syscall event notification via: C-library function override (`LD_PRELOAD`)
+
 * multithread safe (it is a function call)
 
 * almost arch independent

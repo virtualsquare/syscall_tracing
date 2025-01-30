@@ -4,6 +4,9 @@
 
 * self-virtualization
 
+* syscall event notification via: SIGSYS. Args retrieved from siginfo's handler third
+argument (ucontext).
+
 * deeply arch dependent
 
 * thread safe (must be activated at each thread)

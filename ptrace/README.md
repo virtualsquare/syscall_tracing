@@ -40,6 +40,8 @@ memory.
 
 * hypervisor mode.
 
+* syscall event notification via: tracee process state change. i.e. via wait(2).
+
 * (currently) arch dependant. (`PTRACE_SET_SYSCALL_INFO` will permit to write
 arch independent code).
 
